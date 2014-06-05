@@ -29,9 +29,10 @@ public class TripTypeDaoImpl implements TripTypeDao {
 
     @Override
     public void save(TripType triptype) throws SQLException {
-        String sql = "INSERT INTO triptype (triptypeid,`name`,description,lastupdated) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO triptype (triptypeid,`name`,description,lastupdated) "
+                + " VALUES (?,?,?,?)";
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setInt(1,triptype.getId());
+        ps.setInt(1, triptype.getId());
         ps.setString(2, triptype.getName());
         ps.setString(3, triptype.getDescription());
         ps.setDate(4, Utils.convert(triptype.getLastUpdated()));
@@ -96,8 +97,23 @@ public class TripTypeDaoImpl implements TripTypeDao {
     }
 
     @Override
-    public List<TripType> findByName() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<TripType> findByName(String name) throws SQLException {
+        String sql = "SELECT t.triptypeid AS id,t.`name`,t.description,t.lastupdated as lastUpdated FROM triptype t WHERE t.`name` LIKE ?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1, "%" + name + "%");
+        ResultSet rs = ps.executeQuery();
+
+        List<TripType> resultList = new ArrayList<TripType>();
+        while (rs.next()) {
+            TripType result = new TripType();
+            result.setId(rs.getInt("id"));
+            result.setName(rs.getString("name"));
+            result.setDescription(rs.getString("description"));
+            result.setLastUpdated(rs.getDate("lastUpdated"));
+            resultList.add(result);
+        }
+
+        return resultList;
     }
 
 }

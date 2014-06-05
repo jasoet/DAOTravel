@@ -25,5 +25,5 @@ public interface TripTypeDao {
 
     public List<TripType> findAll() throws SQLException;
 
-    public List<TripType> findByName() throws SQLException;
+    public List<TripType> findByName(String name) throws SQLException;
 }

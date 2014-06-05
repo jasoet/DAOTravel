@@ -5,9 +5,12 @@
  */
 package id.ac.uad.tot.travel;
 
+import id.ac.uad.tot.travel.dao.TripDao;
 import id.ac.uad.tot.travel.dao.TripTypeDao;
+import id.ac.uad.tot.travel.dao.impl.TripDaoImpl;
 import id.ac.uad.tot.travel.dao.impl.TripTypeDaoImpl;
 import id.ac.uad.tot.travel.database.DatabaseConnection;
+import id.ac.uad.tot.travel.domain.Trip;
 import id.ac.uad.tot.travel.domain.TripType;
 import java.sql.SQLException;
 import java.util.Date;
@@ -31,6 +34,13 @@ public class MainTest {
 
             for (TripType tt : tripTypes) {
                 System.out.println(tt);
+            }
+            
+            TripDao tripDao = new TripDaoImpl(dbConnection.getConnection());
+            List<Trip> tripList = tripDao.findAll();
+            
+            for(Trip t:tripList){
+                System.out.println(t);
             }
 //
 //            TripType ntt = new TripType();

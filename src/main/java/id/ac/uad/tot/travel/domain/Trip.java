@@ -76,6 +76,11 @@ public class Trip {
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
+
+    @Override
+    public String toString() {
+        return "Trip{" + "id=" + id + ", person=" + person + ", depDate=" + depDate + ", depCity=" + depCity + ", destCity=" + destCity + ", tripType=" + tripType + ", lastUpdate=" + lastUpdate + '}';
+    }
         
         
         

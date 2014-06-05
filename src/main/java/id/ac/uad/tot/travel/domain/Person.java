@@ -58,6 +58,11 @@ public class Person {
     public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" + "id=" + id + ", name=" + name + ", jobTitle=" + jobTitle + ", frequentFlyer=" + frequentFlyer + ", lastUpdated=" + lastUpdated + '}';
+    }
     
     
 }

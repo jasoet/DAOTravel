@@ -6,6 +6,7 @@
 package id.ac.uad.tot.travel.dao;
 
 import id.ac.uad.tot.travel.domain.Trip;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -14,13 +15,13 @@ import java.util.List;
  */
 public interface TripDao {
 
-    public void save(Trip trip);
+    public void save(Trip trip) throws SQLException;
 
-    public void update(int id, Trip trip);
+    public void update(int id, Trip trip) throws SQLException;
 
-    public void delete(int id);
+    public void delete(int id) throws SQLException;
 
-    public Trip findById(int id);
+    public Trip findById(int id) throws SQLException;
 
-    public List<Trip> findAll();
+    public List<Trip> findAll() throws SQLException;
 }
